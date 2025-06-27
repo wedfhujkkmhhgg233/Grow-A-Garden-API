@@ -52,7 +52,7 @@ GET /stock
 Host: gagapi-production.up.railway.app
 
 Response (JSON):
-
+``json
 [
   {
     "itemId": "seed-001",

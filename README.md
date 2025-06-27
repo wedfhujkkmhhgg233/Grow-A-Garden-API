@@ -21,7 +21,6 @@ This is the README file for the **Grow A GARDEN API**, designed to help you inte
 - [Contributing](#contributing)  
 - [License](#license)
 
----
 
 ## Overview
 
@@ -31,14 +30,12 @@ You can:
 - Retrieve current stock levels via REST  
 - Listen for live updates via WebSocket  
 
----
 
 ## Base URLs
 
 - **HTTP REST**: `https://gagapi-production.up.railway.app/stock`  
 - **WebSocket**: `wss://gagapi-production.up.railway.app/`  
 
----
 
 ## Endpoints
 
@@ -52,7 +49,7 @@ GET /stock
 Host: gagapi-production.up.railway.app
 
 Response (JSON):
-
+```json
 [
   {
     "itemId": "seed-001",
@@ -62,11 +59,9 @@ Response (JSON):
     "updatedAt": "2025-06-27T12:34:56Z"
   }
 ]
+```
 
-
----
-
-WebSocket Stream
+** WebSocket Stream
 
 Connect for real-time stock updates.
 
@@ -75,7 +70,7 @@ URL:
 wss://gagapi-production.up.railway.app/
 
 Message Format (Server → Client):
-
+```json
 {
   "event": "stockUpdate",
   "data": {
@@ -86,33 +81,29 @@ Message Format (Server → Client):
     "updatedAt": "2025-06-27T12:35:10Z"
   }
 }
+```
 
-
----
-
-Authentication
+## Authentication
 
 🔐 Currently, no authentication is required.
 (If auth is added later, this section will be updated.)
 
 
----
-
-Usage Examples
+## Usage Examples
 
 HTTP Example (cURL)
-
+```bash
 curl https://gagapi-production.up.railway.app/stock
-
-JavaScript (Fetch)
-
+```
+## JavaScript (Fetch)
+```js
 fetch('https://gagapi-production.up.railway.app/stock')
   .then(res => res.json())
   .then(data => console.log(data))
   .catch(err => console.error(err))
-
-WebSocket Example (Node.js)
-
+```
+## WebSocket Example (Node.js)
+```js
 const WebSocket = require('ws')
 const ws = new WebSocket('wss://gagapi-production.up.railway.app/')
 
@@ -125,26 +116,21 @@ ws.on('message', msg => {
 })
 ws.on('error', console.error)
 ws.on('close', () => console.log('Connection closed'))
+```
 
-
----
-
-Error Handling
+## Error Handling
 
 REST: Uses standard HTTP status codes (4xx for client errors, 5xx for server errors).
 
 WebSocket: Errors are sent as:
-
+```json
 {
   "event": "error",
   "message": "Description of the error"
 }
+```
 
-
-
----
-
-Rate Limiting & Best Practices
+## Rate Limiting & Best Practices
 
 Prefer WebSocket over frequent REST polling for real-time applications.
 
@@ -153,19 +139,14 @@ Implement reconnect logic for WebSocket to ensure reliability.
 Respect any rate limits communicated by the service.
 
 
-
----
-
-Contributing
+## Contributing
 
 Found a bug or want a feature?
 Feel free to open an issue or PR.
 Please follow the style guidelines in CONTRIBUTING.md.
 
 
----
-
-License
+## License
 
 This project is licensed under the MIT License – see LICENSE for details.
 

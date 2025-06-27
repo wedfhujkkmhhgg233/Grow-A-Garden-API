@@ -47,7 +47,7 @@ You can:
 Fetch the latest inventory.
 
 **Request:**  
-```http
+
 GET /stock
 Host: gagapi-production.up.railway.app
 
